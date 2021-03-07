@@ -1,24 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
-
+import Child from './Child';
+  
 function App() {
+
+  const [counter,
+    setCounter] = useState(0);
+
+  function IncrementCounter() {
+    setCounter(counter + 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App container">
+      <h1>React kata: Child to parent event</h1>
+          <div className="level">
+            <div className="level-item">I'm a parent with a counter:
+              <span>{counter}</span>
+            </div>
+            <div className="level-item">
+              <Child tellParent={IncrementCounter}/>
+            </div>
+          </div>
     </div>
   );
 }
